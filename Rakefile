@@ -2,7 +2,7 @@ require 'rubygems'
 require 'rake'
 require 'rake/testtask'
 require 'rake/packagetask'
-require 'rake/gempackagetask'
+require 'rubygems/package_task'
 
 gemfile = File.expand_path('../spec/test_app/Gemfile', __FILE__)
 if File.exists?(gemfile) && (%w(spec cucumber).include?(ARGV.first.to_s) || ARGV.size == 0)
@@ -20,12 +20,13 @@ if File.exists?(gemfile) && (%w(spec cucumber).include?(ARGV.first.to_s) || ARGV
   end
 end
 
+# TODO: cucumber not available
 desc "Default Task"
-task :default => [:spec, :cucumber ]
+task :default => [:spec ] #, :cucumber ]
 
 spec = eval(File.read('spree_product_sort.gemspec'))
 
-Rake::GemPackageTask.new(spec) do |p|
+Gem::PackageTask.new(spec) do |p|
   p.gem_spec = spec
 end
 

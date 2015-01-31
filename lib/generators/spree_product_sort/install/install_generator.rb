@@ -6,7 +6,8 @@ module SpreeProductSort
       end
 
       def add_stylesheets
-        inject_into_file "app/assets/stylesheets/admin/all.css", " *= require admin/spree_product_sort\n", :before => /\*\//, :verbose => true
+        #FIXME: change to the right css path
+        #inject_into_file "app/assets/stylesheets/admin/all.css", " *= require admin/spree_product_sort\n", :before => /\*\//, :verbose => true
       end
 
       def add_migrations
